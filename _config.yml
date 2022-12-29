@@ -1,6 +1,6 @@
 # SITE CONFIGURATION
-baseurl: "/type-theme"
-url: "https://silent-han.github.io/csestudy"
+baseurl: "/csestudy"
+url: "https://silent-han.github.io"
 
 # THEME-SPECIFIC CONFIGURATION
 theme_settings:
