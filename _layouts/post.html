@@ -1,27 +1,39 @@
 ---
 layout: default
 ---
-<article {% if page.feature-img %}class="feature-image"{% endif %}>
-  <header style="background-image: url('{{ site.baseurl }}/{{ page.feature-img }}')">
-    <h1 class="title">{{ page.feature-title | default: page.title }}</h1>
-    {% if page.subtitle %}<h2 class="subtitle">{{ page.subtitle }}</h2>{% endif %}
-    <p class="meta">
-      {{ page.date | date: "%B %-d, %Y" }}
-      {% if page.author %} - {{ page.author }}{% endif %}
-    </p>
+<article class="post">
+  <header> 
+    <div class="title">
+      <h2>{{ page.title | escape }}</h2>
+      <p><a href="//github.com/ViKapitoshka/blog/edit/master/{{ page.path }}" class="icon"><i class="fas fa-fw fa-edit"></i> Редактировать на GitHub</a></p>
+    </div>
+    <div class="meta">
+      <time class="published" datetime="{{ page.date }}">{{ page.date | date: "%d %b %Y %R" }}</time>
+      <a href="{{ site.author.cv }}" class="author"><span class="name">V.{{ site.author.last_name }}</span><img src="{{ site.author.avatar | prepend: site.baseurl }}" alt="ViKapitoshka" /></a>
+    </div>
   </header>
-  <section class="post-content">{{ content }}</section>
-  {% include tags_list.html tags=page.tags tag_count=page.tags.size %}
-</article>
-
-<!-- Disqus -->
-{% if site.theme_settings.disqus_shortname %}
-<div class="comments">
-  {% include disqus.html %}
+  {{ content }}
+  
+  <p>Подписывайтесь на наш <a href="http://t.me/vikablog">канал</a> в телеграмме :)
+  <footer>
+    <ul class="stats">
+      <li><a class="icon" href="{{ site.url }}"><i class="fas fa-fw fa-folder"></i> Главная</a></li>
+      <li><a href="//github.com/ViKapitoshka/blog/edit/master/{{ page.path }}" class="icon"><i class="fas fa-fw fa-edit"></i> Edit</a></li>
+    </ul>
+  </footer>
+  
 </div>
-{% endif %}
+</article>
+<ul class="actions pagination">
+  {% if page.previous.url %}
+    <li><a href="{{page.previous.url}}" class="button big previous icon"><i class="fw fas fa-chevron-left"></i> Туда</a></li>
+  {% endif %}
+  {% if page.next.url %}
+    <li><a href="{{page.next.url}}" class="button big next icon">Сюда <i class="fw fas fa-chevron-right"></i></a></li>
+  {% endif %}
+</ul>
 
-<!-- Post navigation -->
-{% if site.theme_settings.post_navigation %}
-  {% include post_nav.html %}
-{% endif %}
+
+{%include comments.html %}
+
+

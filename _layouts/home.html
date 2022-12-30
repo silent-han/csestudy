@@ -1,52 +1,33 @@
 ---
 layout: default
 ---
-
-<div class="home">
-  {% if site.theme_settings.header_text %}
-  <div class="call-out"
-  style="background-image: url('{{ site.baseurl }}/{{ site.theme_settings.header_text_feature_image }}')">
-    {{ site.theme_settings.header_text }}
-  </div>
-  {% endif %}
-
-  <div class="posts">
-    {% for post in paginator.posts %}
-    <div class="post-teaser">
-      <header>
-        <h1>
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            {{ post.title }}
-          </a>
-        </h1>
-        <p class="meta">
-          {{ post.date | date: "%B %-d, %Y" }}
-        </p>
-      </header>
-      <div class="excerpt">
-        {{ post.excerpt }}
-        <a class="button" href="{{ post.url | relative_url }}">
-          {{ site.theme_settings.str_continue_reading }}
-        </a>
+<!-- Post -->
+{% for post in site.posts %} 
+  <article class="post">
+    <header>
+      <div class="title">
+      <span class="image left image-icon"><a href="{{ post.url | relative_url }}"><img src="{{ site.baseurl}}/images/{{ post.icon }}.svg" style="width: 4em;" alt="{{ post.icon }}"></a></span>
+        <h2><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
       </div>
-    </div>
-    {% endfor %}
-  </div>
-
-  {% if paginator.total_pages > 1 %}
-  <div class="pagination">
-    {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path | relative_url | replace: '//', '/' }}" class="button" >
-      <i class="fa fa-chevron-left"></i>
-      {{ site.theme_settings.str_previous_page }}
-    </a>
+      <div class="meta">
+        <time class="published" datetime="{{ post.date }}">{{ post.date | date: "%d %b %Y %R" }}</time>
+        <a href="{{ site.author.cv }}" class="author"><span class="name">V.{{ site.author.last_name }}</span><img src="{{ site.author.avatar | prepend: site.baseurl }}" alt="VKapitonenko" /></a>
+      </div>
+    </header>
+    {% if post.image %}
+      <a href="{{ post.url | relative_url }}" class="image featured"><img src="/post-img/{{ post.category }}/{{ post.image }}" alt="{{ post.title }}"></a>
     {% endif %}
-    {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path | relative_url | replace: '//', '/' }}" class="button" >
-      {{ site.theme_settings.str_next_page }}
-      <i class="fa fa-chevron-right"></i>
-    </a>
+    {% if post.preview != 0 %}
+      <p>{{ post.content | truncatewords: 35 }}</p>
     {% endif %}
-  </div>
-  {% endif %}
-</div>
+    <footer> 
+      <ul class="actions">
+        <li><a href="{{ post.url | relative_url }}" class="button big">Читать Далее</a></li>
+      </ul>
+      <ul class="stats">
+        <li><a class="icon" href="{{ site.baseurl }}/{{ post.category }}"><i class="fas fa-fw fa-folder"></i> {{ post.category }}</a></li>
+        <li><a href="//github.com/ViKapitoshka/blog/edit/master/{{ page.path }}" class="icon"><i class="fas fa-fw fa-edit"></i> Edit</a></li>
+      </ul>
+    </footer>
+  </article>
+{% endfor %}

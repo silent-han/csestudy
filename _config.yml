@@ -1,86 +1,24 @@
-# SITE CONFIGURATION
-baseurl: "/csestudy"
-url: "https://silent-han.github.io"
+title: IT-блог
+description: > # this means to ignore newlines until "baseurl:"
+  Blog with theme Future Imperfect<br>
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://future-imperfect.kaptn.ru" # the base hostname & protocol for your site, e.g. http://example.com
 
-# THEME-SPECIFIC CONFIGURATION
-theme_settings:
-  # Meta
-  title: Silence han
-  avatar: assets/img/avatar.png
-  favicon: assets/favicon.ico
-  gravatar: # Email MD5 hash
-  description: "컴공생의 개인 공부 및 강의 내용 정리하는 그런 블로그" # used by search engines
 
-  # Header and footer text
+author:
+  name: 'Viktoriya Kapitonenko'
+  last_name: 'Kapitonenko'
+  cv: '//kaptn.ru'
+  avatar: '/images/avatar.jpeg'
+  github_username:  kaptn3  
+  email: vika@kaptn.ru
+  vk_id: id201664979
+  telegram_name: vikapitoshka 
+  logo: '/images/logo.svg'
 
-#  header_text: >
-#    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-#
-#    <p>Remove all header text in <code>_config.yml</code> to disable this feature.</p>
-  header_text_feature_image:
-  footer_text: >
-   Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/rohanchandra/type-theme">Type Theme</a>
-
-  # Icons
-  rss: false
-  email_address: "supercsehan@gmail.com"
-  behance:
-  bitbucket:
-  dribbble:
-  facebook:
-  flickr:
-  gitlab:
-  github: "silent-han"
-  gitter:
-  google_plus:
-  instagram:
-  linkedin:  # Full URL
-  pinterest:
-  reddit:
-  soundcloud:
-  stack_exchange:  # Full URL
-  steam:
-  tumblr:
-  twitter:
-  wordpress:
-  youtube:
-
-  # Scripts
-  google_analytics: # Tracking ID, e.g. "UA-000000-01"
-  disqus_shortname:
-  katex: true # Enable if using math markup
-  search: true # Enable the search feature
-
-  # Localization strings
-  str_follow_on: "Follow on"
-  str_rss_follow: "Follow RSS feed"
-  str_email: "Email"
-  str_next_post: "Next post"
-  str_previous_post: "Previous post"
-  str_next_page: "Next"
-  str_previous_page: "Prev"
-  str_continue_reading: "Continue reading"
-  str_javascript_required_disqus: "Please enable JavaScript to view comments."
-  str_search_no_results: "No results found."
-
-  # Colours, typography and padding
-  # Open the "_sass > base" folder, and open "_variables.scss"
-  google_fonts: "Source+Sans+Pro:400,700,700italic,400italic"
-
-  # Post navigation
-  post_navigation: false
-
-# PAGINATION
-paginate: 5
-paginate_path: "blog/page:num"
-
-# BUILD SETTINGS
+# Build settings
 markdown: kramdown
-highlighter: rouge
-sass:
-  sass_dir: _sass
-  style: :compressed
-plugins: [jekyll-paginate]
-exclude:
-  - Gemfile
-  - Gemfile.lock
+
+permalink: /:categories/:year/:title.html
+
+

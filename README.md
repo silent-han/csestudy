@@ -1,298 +1,138 @@
-# Type Theme
+# Future Imperfect Theme on Jekyll
+>by [Kapitonenko](https://kaptn.ru)
 
-![Default Type Theme blog](https://user-images.githubusercontent.com/816965/30518919-d5978024-9bcd-11e7-81b3-3dd07e99a1f9.png)
+<https://future-imperfect.kaptn.ru> - demo  
+<https://github.com/kaptn3/future-imperfect/> - repository
 
-A free and open-source [Jekyll](https://jekyllrb.com) theme. Great for blogs and easy to customize.
+[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badge/)
+![Future Imperfect Theme preview](https://cdn.rawgit.com/kaptn3/blog/4ccc6d6a/readme_files/screen.png)
 
-[Demo](https://rohanchandra.github.io/type-theme/)
+1. [Installation](#installation)
+2. [Usage](#usage)
+3. [Content management](#content-management)
+    - [Template](#template)
+    - [Example of post](#example-of-post)
+    - [Category page](#category-page)
+4. [Features](#features)
+    - [Categories](#categories)
+    - [Comments](#comments)
+    - [Icons](#icons)
+    - [Post Image](#post-image)
+    - [Featured image](#featured-image)
+    - [Edit link](#edit-link)
+    - [Web analytics](#web-analytics)
+5. [Upgrading Theme](#upgrading-theme)
+6. [Thanks to the following](#thanks-to-the-following)
+7. [Todo](#todo)
+8. [Donate](#donate)
+9. [Copyright and license](#copyright-and-license)
+
+## Installation 
+1. Download, clone or fork repo `git clone git@github.com:kaptn3/blog.git`
+2. Enter the folder: `cd blog/` 
+3. Start Jekyll server: `jekyll s`
+
+Access, [localhost:4000](http://localhost:4000)
 
 ## Usage
+If you're completely new to Jekyll, I recommend checking out the documentation at <http://jekyllrb.com> or there's a tutorial by Smashing Magazine.
 
-1. Fork and clone the [Type Theme repo](https://github.com/rohanchandra/type-theme): `git clone https://github.com/rohanchandra/type-theme`
-2. [Install Jekyll](https://jekyllrb.com/docs/installation/): `gem install jekyll`
-3. Install the theme's dependencies: `bundle install`
-4. Customize the theme (see below)
-5. Run the Jekyll server: `jekyll serve`
+If you have any questions please ask me at [GitHub Issues](https://github.com/kaptn3/future-imperfect/issues).
 
-## Customizing Type Theme
+## Content management
+### Template
+Template of posts setting is in `_drafts/template.md`. `Layout` is always named `post`. `Title` is a title of post, writing in quotation marks. `Date` written in the following format: `yyyy-mm-dd hh:mm`. In `category` specifies one category. In `icon` written the name of icon (its in the folder `images`). In `tags` is possible to write multiple tags using a comma. In `image` specify the path to image preview (can not fill). And in `preview` you can write `0` to on the main page didn't show the announcement of the post. 
 
-Open `_config.yml` in a text editor to change most of the blog's settings.
+More details about all features and setting can be view on [here](#features).
 
-If a variable in this document is marked as "optional", disable the feature by removing all text from the variable. For example, to prevent the avatar from rendering in the header, the avatar line should read:
-
-```yml
-theme:
-  title: Type Theme
-  avatar:
-  gravatar:
+### Example of post
+```
+layout: post
+title:  "Lorem"
+date:   2017-06-04 00:00
+category: category_name
+icon: git
+keywords: tag1, tag2
+image: 1.png
+preview: 0
 ```
 
-Notice the avatar variable is left intentionally blank.
+### Category page
+If you want to add a page of category you have to create folder with name of category and file `index.html`, which should contain the following:  
+```
+---
+layout: default
+title: Category1
+permalink: /category1/ 
+---
 
-Below is a summary of the configuration options in Type Theme.
-
-### Site configuration
-The most common configurations, included here for guidance, are:
-
-Jekyll website *without* a subpath (such as a GitHub Pages website for a given username):
-
-```yml
-# SITE CONFIGURATION
-baseurl: ""
-url: "https://username.github.io"
+{% include category.html %}
 ```
 
-Jekyll website *with* subpath (like the Type Theme demo page):
+You can see example in [here](https://github.com/kaptn3/future-imperfect/blob/master/category1) or [here](https://github.com/kaptn3/blog/blob/master/category2).
 
-```yml
-# SITE CONFIGURATION
-baseurl: "/sub-directory"
-url: "https://username.github.io/"
-```
+## Features
+### Categories
+In blog page, we categorize posts into several categories by url, all category pages use same template html file - `_includes/category.html`. Links of category in menu is in `_data.links.yml`.
 
-Please configure this in `_config.yml` before using the theme.
+For example: URL is `localhost:4000/category1`. In `_data.links.yml` we define this category named category1, so in `_includes/category.html` we get this URL(/category1/) and change it to my category(category1), then this page are posts about category1.
 
-### Meta
-
-Meta variables hold basic information about your Jekyll site which will be used throughout the site and as meta properties for search engines, browsers, and the site's RSS feed.
-
-Change these variables in `_config.yml`:
-
-| Variable    | Example                          | Description                                                                                                                    | Optional |
-| ----------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | -------- |
-| title       | My Jekyll Blog                   | Name of website                                                                                                                | Yes      |
-| avatar      | assets/img/avatar.png            | Path of avatar image, to be displayed in the theme's header                                                                    | Yes      |
-| gravatar    | f9879d71855b5ff21e4963273a886bfc | [MD5 hash of your email address](https://secure.gravatar.com/site/implement/hash/) to load your Gravatar in the theme's header | Yes      |
-| description | My blog posts                    | Short description, primarily used by search engines                                                                            | Yes      |
-
-### Header and footer text
-
-Change these variables in `_config.yml`:
-
-
-| Variable                  | Example                             | Description                                                             | Optional |
-| ------------------------- | ----------------------------------- | ----------------------------------------------------------------------- | -------- |
-| header_text               | Welcome to my Jekyll blog           | HTML (shown below the navigation) with a background colour for emphasis | Yes      |
-| header_text_feature_image | assets/img/sample_feature_img_3.png | Background image for the header text                                    | Yes      |
-| footer_text               | Copyright 2014                      | HTML (shown at end of the site) with lighter text                       | Yes      |
+### Comments
+I use [HyperComments](http://hypercomments.com) instead of other tool, Disqus, so it's slower and don't allows to anonymously send messages. Code of comment is in `_includes/comments` and it included in every post.
 
 ### Icons
+For categories I use svg-icons in `images`. Еhe icon is automatically assigned to the post by its category. The icon name must be `category_name.svg`.
 
-Add your username on selected websites in the icon section of the `_config.yml` file to display the site's icon from [Font Awesome](https://fortawesome.github.io/Font-Awesome/) in the header navigation. All icon variables should be your username enclosed in quotes (e.g. "username"), except for the following variables:
+### Post Image
+All images used in posts that are in `post-image` and its are categorized. For example, images in post of category1's category is in `post-img/category1`. 
 
+### Featured image
+You can specify the preview image for post in [YAML Front Matter](http://jekyllrb.com/docs/frontmatter/). In front matter called "image" to indicate the name of the image. The picture must be located in a category folder.    
+For example, we write post of category_name's category. In folder `post-img/category_name` put the preview image with the title "1.png" and in front matter write: `image: 1.png`. [Example](https://github.com/kaptn3/future-imperfect/blob/master/_posts/2017-06-08-learn-git4.md).
 
-| Variable       | Example                                         | Description                                            | Optional |
-| -------------- | ----------------------------------------------- | ------------------------------------------------------ | -------- |
-| rss            | true                                            | Takes boolean value (true/false) to show RSS feed icon | Yes      |
-| email_address  | type@example.com                                | Email address                                          | Yes      |
-| linkedin       | https://www.linkedin.com/in/FirstLast           | Full URL to profile on LinkedIn                        | Yes      |
-| stack_exchange | https://stackoverflow.com/users/0000/first-last | Full URL to profile on Stack Exchange                  | Yes      |
+Also, in front matter you can control the announcement of record post. By default, the announcement consists of 35 words. Writing in the front matter called "preview" the number 0, the announcement will not be displayed for this entry. [Example](https://github.com/kaptn3/blog/blob/master/_posts/2017-06-08-learn-git4.md).
 
-### Scripts
+### Edit link
+All posts can be edited by users through link: `github.com/kaptn3/future-imperfect/edit/master/{{ page.path }}` or `github.com/kaptn3/blog/edit/master/{{ post.path }}`. 
 
-Change these variables in `_config.yml`:
+### Web analytics
+I use [Yandex Metrika](https://metrika.yandex.ru) to do web analytics, you can choose either to realize it, just paste your code in `includes/analytics.html`.
 
+## Upgrading Theme
+Blog is always being improved by its users, so sometimes one may need to upgrade.
 
-| Variable         | Example      | Description                                                                                                                         | Optional |
-| ---------------- | ------------ | ----------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| google_analytics | UA-123456-01 | Google Analytics [tracking ID](https://support.google.com/analytics/answer/1032385?hl=en)                                           | Yes      |
-| disqus_shortname | shortname    | Disqus [shortname](https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-)                                     | Yes      |
-| katex            | true         | Takes boolean value (true/false) to conditionally load [KaTeX](https://khan.github.io/KaTeX/) scripts required for math typesetting | Yes      |
+Ensure there's an upstream remote
 
-Scripts listed here are only loaded if you provide a value in the `_config.yml` file.
+If `git remote -v` doesn't have an upstream listed, you can do the following to add it:
 
-### Localization strings
+`git remote add upstream https://github.com/kaptn3/future-imperfect.git`
+Pull in the latest changes
 
-Change localization string variables in `_config.yml`.
+`git pull upstream master`
+There may be merge conflicts, so be sure to fix the files that git lists if they occur. That's it!
 
-English text used in the theme (such as the "continue reading" label) has been grouped  so you can quickly translate the theme or change labels to suit your needs.
+## Thanks to the following
+[Jekyll](http://jekyllrb.com/)  
+[HTML5Up](https://html5up.net/)  
+[Font Awesome](http://fontawesome.io/icons/)  
+[HyperComments](http://hypercomments.com)
 
-### Colours, typography, padding
+## TODO
+- [ ] Add 404 page
+- [ ] Search system
+- [x] Add fontawesome 5
+- [ ] Add paginator
 
-![A selection of colours set in Type Theme by modifying the CSS](https://cloud.githubusercontent.com/assets/816965/5142488/130869a6-71d7-11e4-8a38-a69ec1673436.png)
+## Donate
+In `includes/donate.html` you'll see form for donation, includes in every post.  
+Also if this project let you enjoy your blog time, you can give me a cup of coffee :)
 
+[Donate =)](https://money.yandex.ru/to/410013162271067/10)
 
-| Variable     | Example                    | Description                          | Optional                                                     |
-| ------------ | -------------------------- | ------------------------------------ | ------------------------------------------------------------ |
-| google_fonts | "Playfair+Display:400,700\ | PT+Sans:400,700,700italic,400italic" | [Google Fonts](https://www.google.com/fonts) to load for use |
+## Copyright and license
+The theme is taken Future Imperfect Theme from [HTML5 UP](https://html5up.net).
 
-Navigate to the `_sass > base` directory and open `_variables.scss` to change colours, typography and padding used in the theme with CSS.
+It is under [the MIT license](/LICENSE).
 
-Once you have loaded a Google Font in `config.yml`, you can integrate the fonts into your CSS by changing the font-family in `_variables.scss`. For example, after loading the Playfair Display and PT Sans fonts from Google:
-
-```css
-// Typography
-$font-family-main: 'PT Sans', Helvetica, Arial, sans-serif;
-$font-family-headings: 'Playfair Display', Helvetica, Arial, sans-serif;
-```
-
-Mozilla's [ColorPicker](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Colors/Color_picker_tool) is a helpful tool to get your preferred colours in hexadecimal or RGBA form for use in `_variables.scss`.
-
-### Customize style when using the remote_theme
-
-If you're using Type Theme as a `remote_theme`, you can override variables and styles.
-To do so, simply create a `assets/css/main.scss` file on your website with the following content:
-
-```scss
-// assets/css/main.scss
----
----
-
-@import "type-theme";
-```
-
-`@import "type-theme";` includes the theme styles, so you can add custom imports before and after it, depending on your needs.
-Best practice is to put your custom files in the `_sass` folder of your project. Jekyll will automatically look for them there.
-For example, say you wanted to override some theme variables and add some custom styles, you can create the following files:
-
-```scss
-// _sass/_variables.scss
-$background-color: black;
-```
-
-```sass
-// _sass/_custom.sass
-
-// SASS is supported as well, just note the file extension is .sass
-.feature-image header
-  height: 300px
-```
-
-Then import them both into `main.scss`:
-
-```scss
-// assets/css/main.scss
----
----
-
-@import "variables";
-@import "type-theme";
-@import "custom";
-```
-
-## Posts and pages in Type Theme
-Please refer to the [Jekyll docs for writing posts](https://jekyllrb.com/docs/posts/). Non-standard features are documented below.
-
-### Math typesetting
-Wrap math expressions with `$$` signs in your posts and make sure you have set the `katex` variable in `_config.yml` to `true` for math typesetting.
-
-For inline math typesetting, type your math expression on the *same line* as your content. For example:
-
-```latex
-Type math within a sentence $$2x^2 + x + c$$ to display inline
-```
-
-For display math typesetting, type your math expression on a *new line*. For example:
-
-```latex
-$$
-  \bar{y} = {1 \over n} \sum_{i = 1}^{n}y_i
-$$
-```
-
-Type Theme makes use for [KaTeX](https://khan.github.io/KaTeX/) for typesetting.
-
-### Feature images
-
-![Posts with geometric feature images](https://cloud.githubusercontent.com/assets/816965/5142406/19726478-71d6-11e4-8111-94f788b0e44d.png)
-
-Add a feature image by specifying a path to an image in the [front matter](http://jekyllrb.com/docs/frontmatter/) in the form of `feature-img: "img/PATH_TO_IMAGE.png"`.
-
-For example:
-
-```yml
----
-layout: post
-title: Hello World
-feature-img: "assets/img/sample_feature_img.png"
----
-```
-
-By default, the page title is displayed on top of the feature image, as well as on the browser's tab. You can change the feature image's displayed title by specifying a `feature-title` in the front matter:
-
-```yml
----
-layout: post
-title: Short title
-feature-title: A much longer title
-feature-img: "assets/img/sample_feature_img.png"
----
-```
-
-### Hiding pages from navigation
-
-In the front matter of a page, add `hide: true` to prevent the page from showing up in the header's navigation bar (visitors can still visit the URL through other means).
-
-For example:
-
-```yml
----
-layout: page
-title: "Error 404: Page not found"
-permalink: /404.html
-hide: true
----
-```
-
-### Sorting pages in navigation
-
-You can configure this theme to **sort your pages** in the header's navigation bar.
-
-- Set `site_navigation_sort` in theme settings to a property name e.g. `'order'`
-- In the front matter of a non-hidden page, add `order: n`
-
-For example:
-
-```yml
----
-layout: page
-title: Team
-permalink: /team/
-order: 4
----
-```
-
-### Tags
-
-Post tags should be placed between `[]` in your post metadata. Separate each tag with a comma.
-
-For example:
-
-```yml
----
-layout: post
-title: Markdown and HTML
-tags: [sample, markdown, html]
----
-```
-
-A tags listing will be automatically generated using the `tags.html` file provided in Type Theme. If you're not using the tags feature it is safe to delete `tags.html`.
-
-### Search
-
-The search feature can be activated in the `_config.yml` file by changing its value from `false` to `true`.
-
-```yml
-  #Scripts
-  search: true
-```
-
-Once activated, the search bar will appear in the header. This feature uses [Lunr](https://lunrjs.com/) and searches through the title, tags and content of your posts.
-
-### Subtitles
-A subtitle can be displayed below your title on permalink post pages.
-
-To enable this feature, add `subtitle` to your post metadata.
-
-For example:
-
-```yml
----
-layout: post
-title: "This is a title"
-subtitle: "This is a subtitle"
----
-```
-
-## License
-[The MIT License (MIT)](https://github.com/rohanchandra/type-theme/blob/master/LICENSE)
+Enjoy :yum:
