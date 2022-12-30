@@ -19,6 +19,6 @@ author:
 # Build settings
 markdown: kramdown
 
-permalink: /:categories/:year/:title.html
+permalink: /csestudy/:categories/:year/:title.html
 
 
