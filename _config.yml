@@ -9,12 +9,12 @@ author:
   name: 'J.H Han'
   last_name: 'Silent han'
   cv: '//github.com/silent-han'
-  avatar: '/images/avatar.jpeg'
+  avatar: '/images/avatar.png'
   github_username:  silent-han  
   email: supercsehan@gmail.com
   vk_id: id201664979
   telegram_name: vikapitoshka 
-  logo: '/images/logo.svg'
+  logo: '/images/github.svg'
 
 # Build settings
 markdown: kramdown
